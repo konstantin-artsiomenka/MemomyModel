@@ -27,24 +27,6 @@ public class InvisibleVariableRunner {
       // do nothing
     }
 
-
-    try {
-      List<String> pollutionStrings1 = new ArrayList<>(1_000_000);
-      System.out.println("the second list of strings created" + pollutionStrings1);
-      Thread.sleep(3000);
-    } catch (Exception ex) {
-      // do nothing
-    }
-
-    try {
-      List<String> pollutionStrings1 = new ArrayList<>(100_000_000);
-      System.out.println("the second list of strings created" + pollutionStrings1);
-      Thread.sleep(3000);
-    } catch (Exception ex) {
-      // do nothing
-    }
-
-
     while (true) {
       stringsList = new ArrayList<>(1_000_000);
       Thread.sleep(1000L);
