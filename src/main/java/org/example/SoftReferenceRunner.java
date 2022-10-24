@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Soft reference is the next reference after the strong reference in references hierarchy. The only difference is
+ * that memory deallocated just before throwing {@link OutOfMemoryError} error.
+ *
  * @author Konstantin Artsiomenka
  * @version 1.0.0
  */
@@ -18,7 +21,7 @@ public class SoftReferenceRunner {
   private final List<List<String>> infiniteList = new ArrayList<>();
 
   // Please use following VM arguments
-  //-Xmx200m -XX:+UseSerialGC -XX:NewRatio=2 -XX:SurvivorRatio=1 -Xlog:gc*
+  //-Xmx200m -XX:+UseSerialGC -XX:NewRatio=2 -XX:SurvivorRatio=1
   public static void main(String[] args) throws InterruptedException {
     SoftReferenceRunner softReferenceRunner = new SoftReferenceRunner();
     softReferenceRunner.doDemo();
@@ -26,8 +29,7 @@ public class SoftReferenceRunner {
 
   private void doDemo() throws InterruptedException {
     Thread.sleep(10_000L);
-    Reference<List<String>> softReference = new SoftReference<>(new ArrayList<>(5_000_000));
-
+    Reference<List<String>> softReference = new SoftReference<>(new ArrayList<>(20_000_000));
     while (true) {
       infiniteList.add(new ArrayList<>(500_000));
       stringsList = new ArrayList<>(500_000);

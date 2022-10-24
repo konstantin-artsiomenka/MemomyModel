@@ -2,12 +2,20 @@ package org.example;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.lang.ref.PhantomReference;
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * *
+ * The weakest level in references hierarchy holds {@link java.lang.ref.PhantomReference}. {@link PhantomReference}
+ * always returns null on {@link PhantomReference#get()} operation.
+ * For using this type of reference should be created special class which will inherit {@link PhantomReference} and
+ * put there some logic, like it was done in {@link CustomPhantomReference}
+ * The main idea of this type of reference is that it is possible to invoke some after finalization of the object, in
+ * other words it is impossible to get {@link PhantomReference} instances before GC phase.
  * @author Konstantin Artsiomenka
  * @version 1.0.0
  */

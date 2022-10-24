@@ -6,8 +6,13 @@ import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 /**
+ * {@link WeakReference} reference stays after the {@link java.lang.ref.SoftReference} in the references hierarchy.
+ * Objects which have only weak references will be erased once at the first GC stage.
+ *
  * @author Konstantin Artsiomenka
  * @version 1.0.0
  */
@@ -27,6 +32,10 @@ public class WeakReferenceRunner {
     Thread.sleep(10_000L);
     Reference<List<String>> weakReference = new WeakReference<>(new ArrayList<>());
 
+    Map<Object, Object> weakHashMap = new WeakHashMap<>();
+    weakHashMap.put(new Object(), new ArrayList<>());
+
+
     while (true) {
       stringsList = new ArrayList<>(1_000_000);
       Thread.sleep(1000L);
@@ -34,6 +43,11 @@ public class WeakReferenceRunner {
         log.info("memory deallocated");
       } else {
         log.info("weak reference is still present " + weakReference.get());
+      }
+      if (weakHashMap.isEmpty()) {
+        log.info("map memory deallocated");
+      } else {
+        log.info("map weak reference is still present ");
       }
     }
   }
