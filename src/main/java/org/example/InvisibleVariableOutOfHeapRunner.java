@@ -12,7 +12,7 @@ public class InvisibleVariableOutOfHeapRunner {
   private List<String> stringsList = new ArrayList<>();
 
   // Please use following VM arguments
-  //-Xmx200m -XX:+UseSerialGC -XX:NewRatio=2 -XX:SurvivorRatio=1
+  //-Xmx200m -XX:+UseSerialGC -XX:NewRatio=2 -XX:SurvivorRatio=1 -Xlog:gc*
   public static void main(String[] args) throws InterruptedException {
     InvisibleVariableOutOfHeapRunner invisibleVariableOutOfHeapRunner = new InvisibleVariableOutOfHeapRunner();
     invisibleVariableOutOfHeapRunner.doDemo();
