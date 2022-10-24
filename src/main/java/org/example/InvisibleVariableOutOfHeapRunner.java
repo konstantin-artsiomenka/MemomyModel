@@ -1,5 +1,7 @@
 package org.example;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import java.util.List;
  * @author Konstantin Artsiomenka
  * @version 1.0.0
  */
+@Slf4j
 public class InvisibleVariableOutOfHeapRunner {
 
   private List<String> stringsList = new ArrayList<>();
@@ -19,9 +22,10 @@ public class InvisibleVariableOutOfHeapRunner {
   }
 
   private void doDemo() throws InterruptedException {
+    Thread.sleep(10_000L);
     try {
       List<String> pollutionStrings1 = new ArrayList<>(1_000_000);
-      System.out.println("the first list of strings created" + pollutionStrings1);
+      log.info("the first list of strings created" + pollutionStrings1);
       Thread.sleep(3000);
     } catch (Exception ex) {
       // do nothing
@@ -30,7 +34,7 @@ public class InvisibleVariableOutOfHeapRunner {
 
     try {
       List<String> pollutionStrings1 = new ArrayList<>(1_000_000);
-      System.out.println("the second list of strings created" + pollutionStrings1);
+      log.info("the second list of strings created" + pollutionStrings1);
       Thread.sleep(3000);
     } catch (Exception ex) {
       // do nothing
@@ -38,7 +42,7 @@ public class InvisibleVariableOutOfHeapRunner {
 
     try {
       List<String> pollutionStrings1 = new ArrayList<>(100_000_000);
-      System.out.println("the third list of strings created" + pollutionStrings1);
+      log.info("the third list of strings created" + pollutionStrings1);
       Thread.sleep(3000);
     } catch (Exception ex) {
       // do nothing

@@ -19,9 +19,9 @@ public class InvisibleVariableRunner {
   }
 
   private void doDemo() throws InterruptedException {
+    Thread.sleep(10_000L);
     try {
       List<String> pollutionStrings1 = new ArrayList<>(1_000_000);
-      System.out.println("the first list of strings created" + pollutionStrings1);
       Thread.sleep(3000);
     } catch (Exception ex) {
       // do nothing
